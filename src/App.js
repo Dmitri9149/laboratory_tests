@@ -4,6 +4,7 @@ import Footer from './components/Footer'
 import TestForm from './components/TestForm'
 import Tests from './components/Tests'
 import Notification from './components/Notification'
+import CheckingForm from './components/CheckingForm'
 
 
 const App = () => {
@@ -15,6 +16,9 @@ const App = () => {
   const [notification, setNotification] = useState({
     message: null
   })
+  const [testName, setTestName] = useState('')
+  const [testValue, setTestValue] = useState('')
+
 
   useEffect(() => {
     testService.getAll()
@@ -27,6 +31,9 @@ const App = () => {
   const handleUnitsChange = (event) => setNewUnits(event.target.value)
   const handleMinChange = (event) => setNewMin(event.target.value)
   const handleMaxChange = (event) => setNewMax(event.target.value)
+
+  const handleTestName = (event) => setTestName(event.target.value)
+  const handleTestValue = (event) => setTestValue(event.target.value)
 
   const notify = (message, type='success') => {
     setNotification({ message, type })
@@ -128,9 +135,21 @@ const App = () => {
         </tbody>
       </table>
 
-      <div>
-        <Footer/>
-      </div>
+
+      <CheckingForm 
+        handleNameChange={handleNameChange}
+        handleUnitsChange={handleUnitsChange}
+        handleMaxChange={handleMaxChange}
+        handleMinChange={handleMinChange}
+        handleSubmit={handleSubmit}
+        newName={newName}
+        newUnits={newUnits}
+        newMax={newMax}
+        newMin={newMin}
+      /> 
+
+      <Footer/>
+
     </div>
 
   )
