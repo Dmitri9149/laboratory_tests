@@ -140,7 +140,14 @@ const App = () => {
 
       <h3>Tests</h3>
 
-      <Tests tests={tests} deleteTest={deleteTest} />
+      <table>
+        <tbody>
+          <Tests 
+            tests = {tests}
+            deleteTest = {deleteTest}
+          />  
+        </tbody>
+      </table>
 
       <div>
         <Footer/>
