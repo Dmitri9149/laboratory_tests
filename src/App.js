@@ -101,17 +101,17 @@ const App = () => {
 
       logic
       ? notify('Within the range !', 'success')
-      : notify('Out of range!', 'error')
+      : notify('Out of range or check the type of value!', 'error')
 
       setTestName('')
       setTestValue('')
       return 
     }
+
+    notify('There is no a test with the name !', 'error')
     setTestName('')
     setTestValue('')
     return
-
-
   }
 
   const deleteTest = (id) => {
