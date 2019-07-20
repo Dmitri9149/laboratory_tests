@@ -39,7 +39,7 @@ const App = () => {
     const existingTest = tests.find(p => p.name === newName)
 
     if (existingTest) {
-      const ok = window.confirm(`${newName} on jo luettelossa, korvataanko vanha numero uudella`)
+      const ok = window.confirm(`${newName} the test with the name already exist, confirm the modification`)
       
 
       
@@ -47,20 +47,19 @@ const App = () => {
         testService
           .replace({
             ...existingTest,
-            units: newUnits
+            units: newUnits,
+            min:newMin,
+            max:newMax
+
           })
           .then(replacedTest => {
             setTests(tests.map(p => p.name === newName ? replacedTest : p))
             setNewName('')
             setNewUnits('')
-            notify(`Henkilön ${newName} numero muutettu`)
+            setNewMin('')
+            setNewMax('')
+            notify(`Test with  ${newName} is changed`)
           })
-          /*
-          .catch(() => {
-            setPersons(persons.filter(p => p.name !== newName))
-            notify(`Henkilön ${newName} oli jo poistettu`, 'error')
-          })
-          */
       }
 
       return
@@ -80,20 +79,20 @@ const App = () => {
         setNewUnits('')
         setNewMin('')
         setNewMax('')
-        notify(`Lisättiin ${createdTest.name}`)
+        notify(`Added the test  ${createdTest.name}`)
       })
   }
 
   const deleteTest = (id) => {
     const test = tests.find(p => p.id === id)
-    const ok = window.confirm(`Poistetaanko ${test.name}`)
+    const ok = window.confirm(`confirm the  ${test.name} deletion`)
     if (ok) {
       testService
         .remove(id)
         .then(() => {
           setTests(tests.filter(p => p.id !== id))
         })
-      notify(`Poistettiin ${test.name}`)
+      notify(`The test  ${test.name} was deleted`)
     }
   }
 
