@@ -134,7 +134,7 @@ const App = () => {
 
       <Notification notification={notification} />
 
-      <h3>add or modify a test</h3>
+      <h3>Add or modify a test</h3>
     
       <TestForm 
         handleNameChange={handleNameChange}
@@ -158,6 +158,8 @@ const App = () => {
           />  
         </tbody>
       </table>
+
+      <h3>Fill the fields for a value checking</h3>
 
 
       <CheckingForm 

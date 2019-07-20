@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <div style={footerStyle}>
       <br />
-      <em>laboratory_tests app, my programming test for Terveystalo, July 2019</em>
+      <em>laboratory_tests app, my programming test for Suomen Terveystalo, July 2019</em>
     </div>
   )
 }
