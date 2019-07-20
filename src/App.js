@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import testService from './services/tests'
 import Footer from './components/Footer'
 import TestForm from './components/TestForm'
+import Tests from './components/Tests'
 
 const Notification = ({ notification }) => {
   if (notification.message === null) {
@@ -24,18 +25,6 @@ const Notification = ({ notification }) => {
     </div>
   )
 }
-
-
-const Tests = (props) => {
-  return (
-    props.tests.map(p =>
-      <div key={p.name}>
-        {p.name} {p.units}{p.min} {p.max}<button onClick={()=>props.deleteTest(p.id)}>poista</button>
-      </div>
-    )
-  )
-}
-
 
 const App = () => {
   const [tests, setTests] = useState([]) 
