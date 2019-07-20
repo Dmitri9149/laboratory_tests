@@ -29,18 +29,11 @@
       "id": 4
     },
     {
-      "name": "Something2",
-      "units": "ss",
-      "min": "3",
-      "max": "4",
+      "name": "Some More Test",
+      "units": "g/l",
+      "min": "100",
+      "max": "150",
       "id": 5
-    },
-    {
-      "name": "",
-      "units": "",
-      "min": "",
-      "max": "",
-      "id": 6
     }
   ]
 }
