@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import testService from './services/persons'
+import testService from './services/tests'
 
 const Notification = ({ notification }) => {
   if (notification.message === null) {
