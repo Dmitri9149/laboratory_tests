@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import personService from './services/persons'
+import testService from './services/persons'
 
 const Notification = ({ notification }) => {
   if (notification.message === null) {
@@ -24,17 +24,17 @@ const Notification = ({ notification }) => {
 }
 
 
-const Persons = (props) => {
+const Tests = (props) => {
   return (
-    props.persons.map(p =>
+    props.tests.map(p =>
       <div key={p.name}>
-        {p.name} {p.number} <button onClick={()=>props.deletePerson(p.id)}>poista</button>
+        {p.name} {p.number} <button onClick={()=>props.deleteTest(p.id)}>poista</button>
       </div>
     )
   )
 }
 
-const PersonForm = (props) => {
+const TestForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
@@ -51,7 +51,7 @@ const PersonForm = (props) => {
 }
 
 const App = () => {
-  const [persons, setPersons] = useState([])
+  const [tests, setTests] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [notification, setNotification] = useState({
@@ -59,9 +59,9 @@ const App = () => {
   })
 
   useEffect(() => {
-    personService.getAll()
+    testService.getAll()
       .then(data => {
-        setPersons(data)
+        setTests(data)
       })
   }, [])
 
@@ -76,21 +76,21 @@ const App = () => {
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    const existingPerson = persons.find(p => p.name === newName)
+    const existingTest = tests.find(p => p.name === newName)
 
-    if (existingPerson) {
+    if (existingTest) {
       const ok = window.confirm(`${newName} on jo luettelossa, korvataanko vanha numero uudella`)
       
 
       
       if (ok) {
-        personService
+        testService
           .replace({
-            ...existingPerson,
+            ...existingTest,
             number: newNumber
           })
-          .then(replacedPerson => {
-            setPersons(persons.map(p => p.name === newName ? replacedPerson : p))
+          .then(replacedTest => {
+            setTests(tests.map(p => p.name === newName ? replacedTest : p))
             setNewName('')
             setNewNumber('')
             notify(`Henkilön ${newName} numero muutettu`)
@@ -106,29 +106,29 @@ const App = () => {
       return
     } 
      
-  personService
+  testService
       .create({
         name: newName,
         number: newNumber
       })
-      .then(createdPerson => {
-        setPersons(persons.concat(createdPerson))
+      .then(createdTest => {
+        setTests(tests.concat(createdTest))
         setNewName('')
         setNewNumber('')
-        notify(`Lisättiin ${createdPerson.name}`)
+        notify(`Lisättiin ${createdTest.name}`)
       })
   }
 
-  const deletePerson = (id) => {
-    const person = persons.find(p => p.id === id)
-    const ok = window.confirm(`Poistetaanko ${person.name}`)
+  const deleteTest = (id) => {
+    const test = tests.find(p => p.id === id)
+    const ok = window.confirm(`Poistetaanko ${test.name}`)
     if (ok) {
-      personService
+      testService
         .remove(id)
         .then(() => {
-          setPersons(persons.filter(p => p.id !== id))
+          setTests(tests.filter(p => p.id !== id))
         })
-      notify(`Poistettiin ${person.name}`)
+      notify(`Poistettiin ${test.name}`)
     }
   }
 
@@ -141,7 +141,7 @@ const App = () => {
 
       <h3>lisää uusi</h3>
 
-      <PersonForm 
+      <TestForm 
         handleNameChange={handleNameChange}
         handleNumberChange={handleNumberChange}
         handleSubmit={handleSubmit}
@@ -149,9 +149,9 @@ const App = () => {
         newNumber={newNumber}
       />
 
-      <h3>Numerot</h3>
+      <h3>Tests</h3>
 
-      <Persons persons={persons} deletePerson={deletePerson} />
+      <Tests tests={test} deleteTest={deleteTest} />
     </div>
   )
 
