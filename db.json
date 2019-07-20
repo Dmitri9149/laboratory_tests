@@ -1,24 +1,19 @@
 {
   "tests": [
     {
-      "name": "Arto Hellas",
-      "number": "040-123456",
+      "name": "Hemoglobin",
+      "units": "g/l",
+      "min":134,
+      "max":167,
       "id": 1
     },
     {
-      "name": "Arto Järvinen",
-      "number": "040-123456",
-      "id": 3
-    },
-    {
-      "name": "Lea Kutvonen",
-      "number": "040-123456",
-      "id": 4
-    },
-    {
-      "name": "Juha Tauriainen",
-      "number": "09-334456",
-      "id": 9
-    }
+      "name": "LDL-Cholestrol",
+      "units": "mmol/l",
+      "min":0,
+      "max":3,
+      "id": 2
+    }    
+
   ]
 }
