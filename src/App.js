@@ -160,7 +160,7 @@ const App = () => {
 
       <TestForm 
         handleNameChange={handleNameChange}
-        handleunitsChange={handleUnitsChange}
+        handleUnitsChange={handleUnitsChange}
         handleMaxChange={handleMaxChange}
         handleMinChange={handleMinChange}
         handleSubmit={handleSubmit}
