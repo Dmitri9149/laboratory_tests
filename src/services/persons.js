@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = '/api/persons'
+const baseUrl = '/api/tests'
 
 const getAll = () => {
   const promise = axios.get(baseUrl)
