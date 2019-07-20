@@ -1,4 +1,4 @@
-This is app to test my coding skills 
+This is app to test my coding skills (Suomen Terveystalo Oy, July 2019)
 
 The test specification: 
 
