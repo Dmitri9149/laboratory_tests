@@ -1,13 +1,13 @@
 import React from 'react'
+import Test from './Test'
 
-const Tests = (props) => {
-  return (
-    props.tests.map(p =>
-      <div key={p.name}>
-        {p.name} {p.units}{p.min} {p.max}<button onClick={()=>props.deleteTest(p.id)}>poista</button>
-      </div>
-    )
-  )
-}
+
+const Tests = ({tests, deleteTest}) => tests.map(test =>
+  <Test
+    key = {test.id}
+    test={test}
+    deleteTestOf  = {deleteTest}
+  />
+)
 
 export default Tests
