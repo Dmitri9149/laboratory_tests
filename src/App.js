@@ -3,28 +3,8 @@ import testService from './services/tests'
 import Footer from './components/Footer'
 import TestForm from './components/TestForm'
 import Tests from './components/Tests'
+import Notification from './components/Notification'
 
-const Notification = ({ notification }) => {
-  if (notification.message === null) {
-    return null
-  }
-
-  const style = {
-    color: notification.type === 'error' ? 'red' : 'green',
-    background: 'lightgrey',
-    fontSize: 20,
-    borderStyle: 'solid',
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10,
-  }
-
-  return (
-    <div style={style}>
-      {notification.message}
-    </div>
-  )
-}
 
 const App = () => {
   const [tests, setTests] = useState([]) 
@@ -124,7 +104,7 @@ const App = () => {
 
       <Notification notification={notification} />
 
-      <h3>lisää uusi</h3>
+      <h3>add or modify a test</h3>
 
       <TestForm 
         handleNameChange={handleNameChange}
