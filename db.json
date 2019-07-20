@@ -3,17 +3,23 @@
     {
       "name": "Hemoglobin",
       "units": "g/l",
-      "min":134,
-      "max":167,
+      "min": 134,
+      "max": 167,
       "id": 1
     },
     {
       "name": "LDL-Cholestrol",
       "units": "mmol/l",
-      "min":0,
-      "max":3,
+      "min": 0,
+      "max": 3,
       "id": 2
-    }    
-
+    },
+    {
+      "name": "Some Test",
+      "units": "g/l",
+      "min": 10,
+      "max": 20,
+      "id": 3
+    }
   ]
 }
