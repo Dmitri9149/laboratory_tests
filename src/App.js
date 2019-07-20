@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import testService from './services/tests'
+import Footer from './components/Footer'
+
 
 const Notification = ({ notification }) => {
   if (notification.message === null) {
@@ -152,7 +154,12 @@ const App = () => {
       <h3>Tests</h3>
 
       <Tests tests={tests} deleteTest={deleteTest} />
+
+      <div>
+        <Footer/>
+      </div>
     </div>
+
   )
 
 }
