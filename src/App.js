@@ -151,7 +151,7 @@ const App = () => {
 
       <h3>Tests</h3>
 
-      <Tests tests={test} deleteTest={deleteTest} />
+      <Tests tests={tests} deleteTest={deleteTest} />
     </div>
   )
 
