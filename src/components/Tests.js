@@ -6,7 +6,7 @@ const Tests = ({tests, deleteTest}) => tests.map(test =>
   <Test
     key = {test.id}
     test={test}
-    deleteTestOf  = {deleteTest}
+    deleteTest  = {deleteTest}
   />
 )
 
