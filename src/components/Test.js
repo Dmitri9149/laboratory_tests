@@ -1,4 +1,6 @@
-const Test = ({ test, deleteTestOf }) => {
+import React from 'react'
+
+const Test = ({ test, deleteTest }) => {
   return (
 
     <tr>
@@ -18,9 +20,11 @@ const Test = ({ test, deleteTestOf }) => {
         {test.max}
       </td>
       <td>
-        <button onClick={deleteTestOf(test.id)}>delete</button>
+        <button onClick={() => deleteTest(test.id)}>delete</button>
       </td>
     </tr>
 
   )
 }
+
+export default Test
