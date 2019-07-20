@@ -23,14 +23,6 @@ const Notification = ({ notification }) => {
   )
 }
 
-const Filter = (props) => {
-  return (
-    <div>
-      rajaa näytettäviä
-      <input onChange={props.handleChange} value={props.value} />
-    </div>
-  )
-}
 
 const Persons = (props) => {
   return (
@@ -62,7 +54,6 @@ const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
-  const [filter, setFilter] = useState('')
   const [notification, setNotification] = useState({
     message: null
   })
@@ -76,7 +67,6 @@ const App = () => {
 
   const handleNameChange = (event) => setNewName(event.target.value)
   const handleNumberChange = (event) => setNewNumber(event.target.value)
-  const handleFilterChange = (event) => setFilter(event.target.value)
 
   const notify = (message, type='success') => {
     setNotification({ message, type })
@@ -142,17 +132,12 @@ const App = () => {
     }
   }
 
-  const personsToShow = filter.length === 0
-    ? persons 
-    : persons.filter(p => p.name.toLowerCase().includes(filter.toLowerCase()) )
 
   return (
     <div>
       <h2>Puhelinluettelo</h2>
 
       <Notification notification={notification} />
-
-      <Filter handleChange={handleFilterChange} value={filter} />
 
       <h3>lisää uusi</h3>
 
@@ -166,7 +151,7 @@ const App = () => {
 
       <h3>Numerot</h3>
 
-      <Persons persons={personsToShow} deletePerson={deletePerson} />
+      <Persons persons={persons} deletePerson={deletePerson} />
     </div>
   )
 
