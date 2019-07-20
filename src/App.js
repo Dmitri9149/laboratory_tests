@@ -35,6 +35,7 @@ const App = () => {
   const handleTestName = (event) => setTestName(event.target.value)
   const handleTestValue = (event) => setTestValue(event.target.value)
 
+
   const notify = (message, type='success') => {
     setNotification({ message, type })
     setTimeout(() => setNotification({ message: null }), 10000)
@@ -47,9 +48,7 @@ const App = () => {
 
     if (existingTest) {
       const ok = window.confirm(`${newName} the test with the name already exist, confirm the modification`)
-      
-
-      
+       
       if (ok) {
         testService
           .replace({
@@ -90,6 +89,31 @@ const App = () => {
       })
   }
 
+  const handleChecking = (event) => {
+    console.log('we are in handleChecking')
+    event.preventDefault()
+
+    const existingTest = tests.find(p => p.name === testName)
+    console.log('existing Test ', existingTest)
+
+    if (existingTest) {
+      const logic = (testValue > existingTest.min)&&(testValue < existingTest.max)
+
+      logic
+      ? notify('Within the range !', 'success')
+      : notify('Out of range!', 'error')
+
+      setTestName('')
+      setTestValue('')
+      return 
+    }
+    setTestName('')
+    setTestValue('')
+    return
+
+
+  }
+
   const deleteTest = (id) => {
     const test = tests.find(p => p.id === id)
     const ok = window.confirm(`confirm the  ${test.name} deletion`)
@@ -111,7 +135,7 @@ const App = () => {
       <Notification notification={notification} />
 
       <h3>add or modify a test</h3>
-
+    
       <TestForm 
         handleNameChange={handleNameChange}
         handleUnitsChange={handleUnitsChange}
@@ -137,15 +161,13 @@ const App = () => {
 
 
       <CheckingForm 
-        handleNameChange={handleNameChange}
-        handleUnitsChange={handleUnitsChange}
-        handleMaxChange={handleMaxChange}
-        handleMinChange={handleMinChange}
-        handleSubmit={handleSubmit}
-        newName={newName}
-        newUnits={newUnits}
-        newMax={newMax}
-        newMin={newMin}
+        handleTestName={handleTestName}
+        handleTestValue={handleTestValue}
+
+        handleChecking={handleChecking}
+
+        testName={testName}
+        testValue={testValue}
       /> 
 
       <Footer/>

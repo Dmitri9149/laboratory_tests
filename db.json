@@ -3,8 +3,8 @@
     {
       "name": "Hemoglobin",
       "units": "g/l",
-      "min": 134,
-      "max": 167,
+      "min": "134",
+      "max": "167",
       "id": 1
     },
     {
@@ -29,11 +29,18 @@
       "id": 4
     },
     {
-      "name": "e",
-      "units": "e",
-      "min": "1",
-      "max": "1",
+      "name": "Something2",
+      "units": "ss",
+      "min": "3",
+      "max": "4",
       "id": 5
+    },
+    {
+      "name": "",
+      "units": "",
+      "min": "",
+      "max": "",
+      "id": 6
     }
   ]
 }
