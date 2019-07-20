@@ -37,3 +37,6 @@ Implement a UI to perform these functions and to check if value given in UI is b
  
 
 Try to create easy-to-understand code and try to use existing components and consider writing tests
+
+************************************
+The data are stored in db.json file, so the JSON server is used to handle the data. Application is to be run on http://localhost:3000 and JSON server on http://localhost:3001
