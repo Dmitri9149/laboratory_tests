@@ -8,8 +8,8 @@ const getAll = () => {
   return promise.then(response => response.data)
 }
 
-const create = (person) => {
-  const promise = axios.post(baseUrl, person)
+const create = (test) => {
+  const promise = axios.post(baseUrl, test)
 
   return promise.then(response => response.data)
 }
@@ -20,8 +20,8 @@ const remove = (id) => {
   return promise.then(response => response.data)
 }
 
-const replace = (person) => {
-  const promise = axios.put(`${baseUrl}/${person.id}`, person)
+const replace = (test) => {
+  const promise = axios.put(`${baseUrl}/${test.id}`, test)
 
   return promise.then(response => response.data)
 }
