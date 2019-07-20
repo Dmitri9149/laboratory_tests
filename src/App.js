@@ -30,7 +30,7 @@ const Tests = (props) => {
   return (
     props.tests.map(p =>
       <div key={p.name}>
-        {p.name} {p.number} <button onClick={()=>props.deleteTest(p.id)}>poista</button>
+        {p.name} {p.units}{p.min} {p.max}<button onClick={()=>props.deleteTest(p.id)}>poista</button>
       </div>
     )
   )
@@ -40,22 +40,30 @@ const TestForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
-        nimi: <input onChange={props.handleNameChange} value={props.newName} />
+        name: <input onChange={props.handleNameChange} value={props.newName} />
       </div>
       <div>
-        numero: <input onChange={props.handleNumberChange} value={props.newNumber} />
+        units: <input onChange={props.handleUnitsChange} value={props.newUnits} />
       </div>
       <div>
-        <button type="submit">lisää</button>
+        min: <input onChange={props.handleMinChange} value={props.newMin} />
+      </div>
+      <div>
+        max: <input onChange={props.handleMaxChange} value={props.newMax} />
+      </div>
+      <div>
+        <button type="submit">add</button>
       </div>
     </form>
   )
 }
 
 const App = () => {
-  const [tests, setTests] = useState([])
-  const [newName, setNewName] = useState('')
-  const [newNumber, setNewNumber] = useState('')
+  const [tests, setTests] = useState([]) 
+  const [newName, setNewName] = useState('') 
+  const [newUnits, setNewUnits] = useState('')
+  const [newMin, setNewMin] = useState('')
+  const [newMax, setNewMax] = useState('') 
   const [notification, setNotification] = useState({
     message: null
   })
@@ -68,7 +76,9 @@ const App = () => {
   }, [])
 
   const handleNameChange = (event) => setNewName(event.target.value)
-  const handleNumberChange = (event) => setNewNumber(event.target.value)
+  const handleUnitsChange = (event) => setNewUnits(event.target.value)
+  const handleMinChange = (event) => setNewMin(event.target.value)
+  const handleMaxChange = (event) => setNewMax(event.target.value)
 
   const notify = (message, type='success') => {
     setNotification({ message, type })
@@ -89,12 +99,12 @@ const App = () => {
         testService
           .replace({
             ...existingTest,
-            number: newNumber
+            units: newUnits
           })
           .then(replacedTest => {
             setTests(tests.map(p => p.name === newName ? replacedTest : p))
             setNewName('')
-            setNewNumber('')
+            setNewUnits('')
             notify(`Henkilön ${newName} numero muutettu`)
           })
           /*
@@ -111,12 +121,17 @@ const App = () => {
   testService
       .create({
         name: newName,
-        number: newNumber
+        units: newUnits,
+        min:newMin,
+        max:newMax
+
       })
       .then(createdTest => {
         setTests(tests.concat(createdTest))
         setNewName('')
-        setNewNumber('')
+        setNewUnits('')
+        setNewMin('')
+        setNewMax('')
         notify(`Lisättiin ${createdTest.name}`)
       })
   }
@@ -137,7 +152,7 @@ const App = () => {
 
   return (
     <div>
-      <h2>Puhelinluettelo</h2>
+      <h2>Laboratory Tests</h2>
 
       <Notification notification={notification} />
 
@@ -145,10 +160,14 @@ const App = () => {
 
       <TestForm 
         handleNameChange={handleNameChange}
-        handleNumberChange={handleNumberChange}
+        handleunitsChange={handleUnitsChange}
+        handleMaxChange={handleMaxChange}
+        handleMinChange={handleMinChange}
         handleSubmit={handleSubmit}
         newName={newName}
-        newNumber={newNumber}
+        newUnits={newUnits}
+        newMax={newMax}
+        newMin={newMin}
       />
 
       <h3>Tests</h3>
